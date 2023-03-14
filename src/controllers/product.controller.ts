@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+// import INewProduct from '../interfaces/INewProduct';
 import * as productService from '../services/product.service';
 
 const getAll = async (_req: Request, res: Response) => {
@@ -6,16 +7,13 @@ const getAll = async (_req: Request, res: Response) => {
   return res.status(200).json(allProducts);
 };
 
-const xablau = () => 'oi';
-
-// const addNewProduct = async (req: Request, res: Response) => {
-//   const newProduct = req.body;
-//   const addNew = await productService.addNewProduct(newProduct);
-//   return res.status(201).json(addNew);
-// };
+const addNewProduct = async (req: Request, res: Response) => {
+  const newProduct = req.body;
+  const product = await productService.addNewProduct(newProduct);
+  return res.status(201).json(product);
+};
 
 export {
   getAll,
-  // addNewProduct,
-  xablau,
+  addNewProduct,
 };
