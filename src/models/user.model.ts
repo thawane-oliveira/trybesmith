@@ -1,22 +1,29 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import ILogin from '../interfaces/ILogin';
 import INewUser from '../interfaces/INewUser';
 import connection from './connection';
 
-const xablau = () => 'x';
-
 const addNewUser = async (newUser: INewUser) => {
   const { username, vocation, level, password } = newUser;
-  const [result] = await connection
+  await connection
     .execute<ResultSetHeader>(
     'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?);',
     [username, vocation, level, password],
   );
-  console.log(result);
-  
+
   return { username, vocation, level, password };
 };
 
+const getByName = async (credentials: ILogin) => {
+  const { username, password } = credentials;
+  const [[result]] = await connection.execute<RowDataPacket[]>(
+    'SELECT * FROM Trybesmith.users WHERE username = ? AND password = ?;',
+    [username, password],
+  );
+  return { username, vocation: result.vocation, level: result.level, password };
+};
+
 export {
-  xablau,
+  getByName,
   addNewUser,
 };

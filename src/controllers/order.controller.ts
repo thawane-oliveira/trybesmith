@@ -3,8 +3,7 @@ import * as orderService from '../services/order.service';
 
 const getAll = async (_req: Request, res: Response) => {
   const allOrders = await orderService.getAll();
-  console.log(allOrders);
-  
+ 
   return res.status(200).json(allOrders);
 };
 

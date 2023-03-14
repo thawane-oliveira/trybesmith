@@ -7,9 +7,12 @@ const addNewUser = async (req: Request, res: Response) => {
   return res.status(201).json({ token });
 };
 
-const xablau = () => 'x';
-
+const loginUser = async (req: Request, res: Response) => {
+  const credentials = req.body;
+  const token = await userService.loginUser(credentials);
+  return res.status(200).json({ token });
+};
 export {
-  xablau,
+  loginUser,
   addNewUser,
 };
