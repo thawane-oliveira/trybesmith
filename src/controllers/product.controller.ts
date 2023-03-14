@@ -6,6 +6,16 @@ const getAll = async (_req: Request, res: Response) => {
   return res.status(200).json(allProducts);
 };
 
-const xablau = () => null;
+const xablau = () => 'oi';
 
-export { getAll, xablau };
+// const addNewProduct = async (req: Request, res: Response) => {
+//   const newProduct = req.body;
+//   const addNew = await productService.addNewProduct(newProduct);
+//   return res.status(201).json(addNew);
+// };
+
+export {
+  getAll,
+  // addNewProduct,
+  xablau,
+};

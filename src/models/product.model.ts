@@ -6,6 +6,17 @@ const getAll = async () => {
   return rows as IProduct[];
 };
 
-const xablau = () => null;
+const xablau = () => 'oi';
 
-export { getAll, xablau };
+// const addNewProduct = async (newProduct: IProduct) => {
+//   const { name, amount } = newProduct;
+//   const { insertId } = await connection
+//     .execute('INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?);', [name, amount]);
+//   return { id: insertId, name, amount };
+// };
+
+export {
+  getAll,
+  // addNewProduct,
+  xablau,
+};

@@ -6,6 +6,15 @@ const getAll = async (): Promise<IProduct[]> => {
   return products;
 };
 
-const xablau = () => null;
+const xablau = () => 'oi';
 
-export { getAll, xablau };
+// const addNewProduct = async (newProduct: IProduct): Promise<IProduct[]> => {
+//   const addNew = await productModel.addNewProduct(newProduct);
+//   return addNew;
+// };
+
+export {
+  getAll,
+  xablau,
+  // addNewProduct
+};
