@@ -9,9 +9,13 @@ const addNewUser = async (req: Request, res: Response) => {
 
 const loginUser = async (req: Request, res: Response) => {
   const credentials = req.body;
+
   const token = await userService.loginUser(credentials);
-  return res.status(200).json({ token });
+  if (token) return res.status(200).json({ token });
+
+  return res.status(401).json({ message: 'Username or password invalid' });
 };
+
 export {
   loginUser,
   addNewUser,

@@ -20,7 +20,9 @@ const getByName = async (credentials: ILogin) => {
     'SELECT * FROM Trybesmith.users WHERE username = ? AND password = ?;',
     [username, password],
   );
-  return { username, vocation: result.vocation, level: result.level, password };
+
+  if (result) return { username, vocation: result.vocation, level: result.level, password };
+  return null;
 };
 
 export {
