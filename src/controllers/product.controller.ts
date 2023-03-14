@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-// import INewProduct from '../interfaces/INewProduct';
 import * as productService from '../services/product.service';
 
 const getAll = async (_req: Request, res: Response) => {
