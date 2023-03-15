@@ -1,3 +1,4 @@
+import { ResultSetHeader } from 'mysql2';
 import IOrder from '../interfaces/IOrder';
 import connection from './connection';
 
@@ -11,6 +12,14 @@ const getAll = async () => {
   return rows as IOrder[];
 };
 
-const xablau = () => null;
+const addNewOrder = async (userId: number) => {
+  const [{ insertId }] = await connection
+    .execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.orders (user_id) VALUE (?);',
+    [userId],
+  );
 
-export { getAll, xablau };
+  return insertId;
+};
+
+export { getAll, addNewOrder };

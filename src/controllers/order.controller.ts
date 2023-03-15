@@ -7,6 +7,11 @@ const getAll = async (_req: Request, res: Response) => {
   return res.status(200).json(allOrders);
 };
 
-const xablau = () => null;
+const addNewOrder = async (req: Request, res: Response) => {
+  console.log(req.body, 'passou por aqui, testando');
+  const { productsIds, userToken } = req.body;
+  const order = await orderService.addNewOrder({ userId: userToken.userId, productsIds });
+  return res.status(201).json(order);
+};
 
-export { getAll, xablau };
+export { getAll, addNewOrder };

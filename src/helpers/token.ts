@@ -1,7 +1,7 @@
 import jwt, { Secret, SignOptions } from 'jsonwebtoken';
 import INewUser from '../interfaces/INewUser';
 
-const tokenSecret:Secret = process.env.JWT_SECRET || 'thawane';
+const tokenSecret:Secret = process.env.JWT_SECRET || 'emeraldsplash';
 
 const config: SignOptions = {
   expiresIn: '3d',

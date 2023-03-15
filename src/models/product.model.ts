@@ -14,11 +14,18 @@ const addNewProduct = async (newProduct: IProduct) => {
     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?);',
     [name, amount],
   );
- 
+
   return { id: insertId, name, amount };
+};
+
+const updateProduct = async (productId: number, orderId: number) => {
+  const [result] = await connection
+    .execute('UPDATE Trybesmith.products SET order_id = ? WHERE id = ?;', [orderId, productId]);
+  return result;
 };
 
 export {
   getAll,
   addNewProduct,
+  updateProduct,
 };
