@@ -1,5 +1,5 @@
 import IJoiReturn from '../interfaces/IJoiReturn';
-import { orderSchema } from './schemas';
+import { orderSchema, productSchema } from './schemas';
 
 const validateNewOrder = (productsIds: number[]): IJoiReturn => {
   const { error } = orderSchema.validate({ productsIds });
@@ -11,7 +11,15 @@ const validateNewOrder = (productsIds: number[]): IJoiReturn => {
   return { error: false, status: 200, message: '' };
 };
 
-const validateNewProduct = () => null;
+const validateNewProduct = (name: string, amount: string): IJoiReturn => {
+  const { error } = productSchema.validate({ name, amount });
+  
+  if (error) {
+    const [status = 200, message = ''] = error.message.split('|');
+    return { error: true, status: Number(status), message };
+  }
+  return { error: false, status: 200, message: '' };
+};
 
 export {
   validateNewProduct,

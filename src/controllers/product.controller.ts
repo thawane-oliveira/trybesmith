@@ -9,7 +9,12 @@ const getAll = async (_req: Request, res: Response) => {
 const addNewProduct = async (req: Request, res: Response) => {
   const newProduct = req.body;
   const product = await productService.addNewProduct(newProduct);
-  return res.status(201).json(product);
+
+  if (!product.error) {
+    return res.status(201).json(product);
+  }
+
+  return res.status(product.status || 400).json({ message: product.message });
 };
 
 export {
