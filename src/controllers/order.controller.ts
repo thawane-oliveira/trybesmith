@@ -3,15 +3,19 @@ import * as orderService from '../services/order.service';
 
 const getAll = async (_req: Request, res: Response) => {
   const allOrders = await orderService.getAll();
- 
+
   return res.status(200).json(allOrders);
 };
 
 const addNewOrder = async (req: Request, res: Response) => {
-  console.log(req.body, 'passou por aqui, testando');
   const { productsIds, userToken } = req.body;
   const order = await orderService.addNewOrder({ userId: userToken.userId, productsIds });
-  return res.status(201).json(order);
+
+  if (!order.error) {
+    return res.status(201).json(order);
+  }
+
+  return res.status(order.status || 400).json({ message: order.message });
 };
 
 export { getAll, addNewOrder };
